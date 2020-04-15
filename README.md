@@ -13,7 +13,7 @@
 
 如图：
 
-
+![主页效果]([https://github.com/gcgo/blog-sys/blob/master/img/%E5%A4%A7%E4%BD%9C%E4%B8%9A.png](https://github.com/gcgo/blog-sys/blob/master/img/大作业.png))
 
 
 
