@@ -1,4 +1,4 @@
-package com.gcgo.blogsys;
+package com.gcgo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
