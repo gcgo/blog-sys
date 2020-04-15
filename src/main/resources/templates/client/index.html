@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- 载入文章头部页面，位置在/client文件夹下的header模板页面，模板名称th:fragment为header -->
-<div th:replace="/client/header::header(null,null)"></div>
+<!--<div th:replace="/client/header::header(null,null)"></div>-->
+<div th:replace="/header::header(null,null)"></div>
 <body>
 <div class="am-g am-g-fixed blog-fixed index-page">
     <div class="am-u-md-8 am-u-sm-12">
-
-
 
 
         <!-- 文章遍历并分页展示 : 需要同学们手动完成，基本样式已经给出，请使用th标签及表达式完成页面展示 -->
@@ -31,7 +30,35 @@
             </article>
         </div>
 
-
+        <!--分页-->
+        <div class="modal-footer no-margin-top">
+            <ul id="page">
+                <!-- 首页 -->
+                <li>
+                    <a th:href="'/list?pageNum=0'">首页</a>
+                </li>
+                <!-- 上一页 -->
+                <li th:if="${articles.hasPrevious()}">
+                    <a th:href="'/list?pageNum=' + ${articles.previousPageable().getPageNumber()}" th:text="上一页"></a>
+                </li>
+                <!-- 中间页 -->
+                <li th:each="pageNum:${#numbers.sequence(0, articles.getTotalPages() - 1)}">
+                    <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}"
+                       th:if="${pageNum ne articles.pageable.getPageNumber()}"></a>
+                    <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}"
+                       th:if="${pageNum eq articles.pageable.getPageNumber()}"
+                       th:style="'font-weight:bold;background: #6faed9;'"></a>
+                </li>
+                <!-- 下一页 -->
+                <li th:if="${articles.hasNext()}">
+                    <a th:href="'/list?pageNum=' + ${articles.nextPageable().getPageNumber()}" th:text="下一页"></a>
+                </li>
+                <!-- 尾页 -->
+                <li>
+                    <a th:href="'/list?pageNum=' + ${articles.getTotalPages() - 1}">尾页</a>
+                </li>
+            </ul>
+        </div>
 
 
     </div>
@@ -57,5 +84,6 @@
 </div>
 </body>
 <!-- 载入文章尾部页面，位置在/client文件夹下的footer模板页面，模板名称th:fragment为footer -->
-<div th:replace="/client/footer::footer"></div>
+<!--<div th:replace="/client/footer::footer"></div>-->
+<div th:replace="/footer::footer"></div>
 </html>

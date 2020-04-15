@@ -1,19 +1,12 @@
 package com.gcgo.service;
 
 import com.gcgo.pojo.Article;
-import com.gcgo.repository.ArticleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Service
-public class ArticleService {
-    @Autowired
-    private ArticleRepository articleRepository;
+public interface ArticleService {
+    public List<Article> findAll();
 
-    public List<Article> findAll() {
-        List<Article> all = articleRepository.findAll();
-        return all;
-    }
+    Page<Article> findArticleList(int pageNum, int pageSize);
 }
